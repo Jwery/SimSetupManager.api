@@ -1,0 +1,6 @@
+# Fichiers et dossiers Visual Studio
+.vs/
+[Bb]in/
+[Oo]bj/
+*.suo
+*.user

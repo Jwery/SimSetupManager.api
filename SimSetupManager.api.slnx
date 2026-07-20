@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="SimSetupManager.Core/SimSetupManager.Core.csproj" />
+  <Project Path="SimSetupManager/SimSetupManager.csproj" />
+</Solution>

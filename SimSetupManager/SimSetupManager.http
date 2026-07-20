@@ -1,0 +1,6 @@
+@SimSetupManager_HostAddress = http://localhost:5062
+
+GET {{SimSetupManager_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
