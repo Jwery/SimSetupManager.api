@@ -4,11 +4,10 @@ namespace SimSetupManager.Core.Entities
 {
     public class Vehicle
     {
-        public Guid Id { get; set; }
-
-        public Guid Brand { get; set; }
-        public Guid Model { get; set; }
-        public Guid Year { get; set; }
-        public Guid Variante { get; set; }
+        public required Guid Id { get; set; }
+        public required String Brand { get; set; }
+        public required String Name { get; set; }
+        public String? Year { get; set; }
+        public String? Variante { get; set; }
     }
 }
