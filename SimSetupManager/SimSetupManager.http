@@ -1,6 +1,29 @@
-@SimSetupManager_HostAddress = http://localhost:5062
+POST http://localhost:5000/api/setups
+Content-Type: application/json
 
-GET {{SimSetupManager_HostAddress}}/weatherforecast/
-Accept: application/json
-
+{
+  "gameId": "10000000-0000-0000-0000-000000000010",
+  "trackId": "20000000-0000-0000-0000-000000000006",
+  "vehicleId": "30000000-0000-0000-0000-000000000025",
+  "conditions": {
+    "weather": "Sunny",
+    "timeOfDay": "14:00",
+    "trackTemp": 32.5,
+    "airTemp": 25.0
+  },
+  "settings": {
+    "suspension": {
+      "frontRideHeight": 85,
+      "rearRideHeight": 90,
+      "antiRollBarFront": 6,
+      "antiRollBarRear": 4
+    },
+    "tyres": {
+      "frontLeftPressure": 25.5,
+      "frontRightPressure": 25.5,
+      "compound": "Racing Soft"
+    }
+  }
+}
 ###
+GET http://localhost:5000/api/setups

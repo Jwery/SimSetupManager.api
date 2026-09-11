@@ -18,10 +18,21 @@ namespace SimSetupManager.Api.Controllers
 
         // GET: api/setups
         // Récupère la liste de tous les setups
+        // GET: api/setups/5
+        // 1. Récupérer TOUS les setups (C'est celle-ci qui te manque ou qui est mal annotée)
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Setup>>> GetSetups()
         {
             return await _context.Setups.ToListAsync();
+        }
+
+        // 2. Récupérer UN SEUL setup précis
+        [HttpGet("{id}")]
+        public async Task<ActionResult<Setup>> GetSetup(Guid id)
+        {
+            var setup = await _context.Setups.FindAsync(id);
+            if (setup == null) return NotFound();
+            return setup;
         }
 
         // POST: api/setups
@@ -34,7 +45,7 @@ namespace SimSetupManager.Api.Controllers
             await _context.SaveChangesAsync();
 
             // Retourne un code HTTP 201 (Created) avec l'objet tel qu'il a été enregistré
-            return CreatedAtAction(nameof(GetSetups), new { id = newSetup.Id }, newSetup);
+            return CreatedAtAction(nameof(GetSetup), new { id = newSetup.Id }, newSetup);
         }
     }
 }
