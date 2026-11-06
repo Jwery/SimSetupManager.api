@@ -1,27 +1,36 @@
-import { Injectable, inject } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { Setup } from '../models/setup.models'; // <-- L'import crucial de ton nouveau fichier
+export interface Game {
+  id: string;
+  name: string;
+}
 
-@Injectable({
-  providedIn: 'root'
-})
-export class SetupService {
-  private http = inject(HttpClient);
-  
-  private apiUrl = 'http://localhost:5000/api/setups'; 
+export interface Track {
+  id: string;
+  name: string;
+}
 
-  // Fini le 'any', on exige un tableau de 'Setup'
-  getSetups(): Observable<Setup[]> {
-    return this.http.get<Setup[]>(this.apiUrl);
-  }
+export interface Vehicle {
+  id: string;
+  brand: string;
+  name: string;
+  year?: string;
+  variante?: string;
+}
 
-  getSetupById(id: string): Observable<Setup> {
-    return this.http.get<Setup>(`${this.apiUrl}/${id}`);
-  }
+export interface SetupConditions {
+  weather: string;
+  timeOfDay: string;
+  trackTemp: number;
+  airTemp: number;
+}
 
-  // Pour la création, on utilise Partial<Setup> car on n'envoie pas l'Id (généré par la base)
-  createSetup(setupPayload: Partial<Setup>): Observable<Setup> {
-    return this.http.post<Setup>(this.apiUrl, setupPayload);
-  }
+export interface Setup {
+  id: string;
+  gameId: string;
+  trackId: string;
+  vehicleId: string;
+  conditions: SetupConditions;
+  // On garde settings en 'any' pour l'instant car la structure 
+  // varie énormément entre GT7 (pièces) et Assetto Corsa (télémétrie)
+  settings: any; 
+  createdAt?: string;
 }

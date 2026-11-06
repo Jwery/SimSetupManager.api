@@ -1,0 +1,10 @@
+<div class="telemetry-panel">
+  <label>{{ label }} : {{ value }}</label>
+  <input 
+    type="range" 
+    class="massive-slider" 
+    [min]="min" 
+    [max]="max" 
+    [value]="value"
+    (input)="onSliderChange($event)">
+</div>

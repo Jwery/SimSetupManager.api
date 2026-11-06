@@ -35,6 +35,26 @@ namespace SimSetupManager.Api.Controllers
             return setup;
         }
 
+        [HttpPut("{id}")]
+        public async Task<IActionResult> UpdateSetup(Guid id, [FromBody] Setup updatedSetup)
+        {
+            if (id != updatedSetup.Id) return BadRequest("L'ID ne correspond pas.");
+
+            _context.Entry(updatedSetup).State = EntityState.Modified;
+
+            try
+            {
+                await _context.SaveChangesAsync();
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_context.Setups.Any(e => e.Id == id)) return NotFound();
+                else throw;
+            }
+
+            return NoContent(); // Code 204 : Succès, mais rien à renvoyer
+        } 
+
         // POST: api/setups
         // Crée un nouveau setup dans la base de données
         [HttpPost]

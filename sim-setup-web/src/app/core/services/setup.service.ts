@@ -24,4 +24,8 @@ export class SetupService {
   createSetup(setupPayload: Partial<Setup>): Observable<Setup> {
     return this.http.post<Setup>(this.apiUrl, setupPayload);
   }
+  
+  updateSetup(id: string, setup: Setup): Observable<any> {
+    return this.http.put(`${this.apiUrl}/${id}`, setup);
+  }
 }
